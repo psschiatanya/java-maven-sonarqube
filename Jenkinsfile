@@ -5,6 +5,7 @@
         // Specify the JDK and Maven versions installed on the Jenkins server
         jdk 'JDK17'
         maven 'Maven3'
+		sonarqube-scanner 'sonarqube-scanner'
        
     }
 
@@ -12,6 +13,8 @@
         // Set any environment variables needed, e.g., JAVA_HOME, MAVEN_HOME, SONARQUBE
         JAVA_HOME = "${tool 'JDK17'}"
         MAVEN_HOME = "${tool 'Maven3'}"
+		SCANNER_HOME =  "${tool 'sonarqube-scanner'}"
+		
         PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
         SONAR_TOKEN = credentials('sonarqube-token') 
     }

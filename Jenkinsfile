@@ -63,7 +63,7 @@
             }
             steps {
               withSonarQubeEnv(credentialsId: 'sonarqube-token', installationName: 'sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner"
+                sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=test -Dsonar.projectName='test' '''
               }
             }
         }

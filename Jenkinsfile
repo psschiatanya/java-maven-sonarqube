@@ -14,6 +14,7 @@
 		
         PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
         SONAR_TOKEN = credentials('sonarqube-token') 
+		
     }
 
     stages {
@@ -53,6 +54,17 @@
                         sh '''mvn clean verify sonar:sonar  -Dsonar.projectKey=test  -Dsonar.projectName='test' -Dsonar.host.url=http://3.107.55.196:9000   -Dsonar.login=${SONAR_TOKEN}'''
                     
                 }
+            }
+        }
+		
+		 stage('Run Sonarqube') {
+            environment {
+                scannerHome = tool 'sonarqube-scanner';
+            }
+            steps {
+              withSonarQubeEnv(credentialsId: 'sonarqube-token', installationName: 'sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+              }
             }
         }
     }	

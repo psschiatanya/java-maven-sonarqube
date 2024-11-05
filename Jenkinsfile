@@ -6,8 +6,7 @@
         jdk 'JDK17'
         maven 'Maven3'
 		sonarqube-scanner 'sonarqube-scanner'
-       
-    }
+       }
 
     environment {
         // Set any environment variables needed, e.g., JAVA_HOME, MAVEN_HOME, SONARQUBE

@@ -3,7 +3,7 @@
 
   <modelVersion>4.0.0</modelVersion> 
 
-  <groupId>com.example.maven-project</groupId>
+  <groupId>com.example</groupId>
   <artifactId>maven-project</artifactId>
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -14,6 +14,8 @@
   <properties>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+	<sonar.projectKey>com.example:test</sonar.projectKey> <!-- Replace with your project key -->
+    <sonar.host.url>http://13.239.137.224:9000</sonar.host.url>
   </properties>
 
   <modules>
@@ -82,6 +84,13 @@
           </reportPlugins>
         </configuration>
       </plugin>
+    </plugins>
+	<plugins>
+	        <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
+            </plugin>
     </plugins>
 
     <pluginManagement>

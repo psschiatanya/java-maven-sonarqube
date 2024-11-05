@@ -80,12 +80,7 @@
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>taglist-maven-plugin</artifactId>
-            </plugin>
-			<plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
-            </plugin>
+            </plugin>			
           </reportPlugins>
         </configuration>
       </plugin>
@@ -172,6 +167,16 @@
         </plugin>
       </plugins>
     </pluginManagement>
+	 <reporting>
+        <plugins>
+            <!-- SonarQube Plugin in reporting section -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.9.1.2184</version>
+            </plugin>
+        </plugins>
+    </reporting>
   </build>
 
   <dependencyManagement>

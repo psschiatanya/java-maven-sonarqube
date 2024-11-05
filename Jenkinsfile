@@ -1,88 +1,62 @@
-    pipeline {
+   pipeline {
     agent any
-    triggers {
-        pollSCM '* * * * *'
-    }    
-   
+
     tools {
-           maven 'Maven'
-            jdk 'JAVA_11'
-            git 'GIT'
-            
-          }
+        // Specify the JDK and Maven versions installed on the Jenkins server
+        jdk 'JDK17'
+        maven 'Maven3'
+       
+    }
+
+    environment {
+        // Set any environment variables needed, e.g., JAVA_HOME, MAVEN_HOME, SONARQUBE
+        JAVA_HOME = "${tool 'JDK17'}"
+        MAVEN_HOME = "${tool 'Maven3'}"
+        PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
+        SONAR_TOKEN = credentials('sonarqube-token') 
+    }
 
     stages {
-
-        stage ("Step0: Tools initialization")
-                {
-                steps {
-                        sh "mvn --version"
-                        sh "java -version"
-                        sh "git --version"
-                        sh "ansible --version"
-                
-                      }
-                }
-        
-        stage ("Step1: Git Checkout")
-                {
-                steps {
-                        echo "Step1: Git Checkout"
-                        git url: 'https://github.com/psschiatanya/hello-world-1.git', branch: 'master'
-                
-                      }
-                }
-        stage ("Step2: Maven Build")
-                {
-                steps {
-                        echo "Step2: Maven Build"
-                        sh 'mvn -B -DskipTests clean install'
-                
-                      }
-                }
-        stage ("Step3: Copy the war")
-                {
-                steps {
-                        echo "Step3: Copy the war"
-                        sh 'ansible-playbook  /opt/ansible/playbook/project1/file_transfer.yml  -i /opt/ansible/playbook/project1/hosts'
-                
-                      }
-                }
-        stage ("Step4: Build the Docker & Push the Image")
-                {
-                steps {
-                        echo "Step4: Build the Docker"
-                         sh 'ansible-playbook  /opt/ansible/playbook/project1/docker_push.yml  -i /opt/ansible/playbook/project1/hosts'
-                
-                      }
-                }   
-        
-        stage ("Step6: Deploy to Kubernetes ")
-                {
-                steps {
-                  
-                        echo "Step6: Deploy to Kubernetes "
-                        sh 'ansible-playbook  /opt/ansible/playbook/project1/kube_deploy.yml  -i /opt/ansible/playbook/project1/hosts'
-                      }
-                } 
+        stage('Checkout') {
+            steps {
+                // Checkout code from the repository
+                git url: 'https://github.com/psschiatanya/java-maven-sonarqube', branch: 'main'
+            }
         }
-         
-    post{
-            success{
-                    emailext to: "psschiatanya@gmail.com",
-                    subject: "Test Email",
-                    body: "Test",
-                    attachLog: true
-                  }
-        
-           failure{
-                    emailext to: "psschiatanya@gmail.com",
-                    subject: "Test failed",
-                    body: "Test",
-                    attachLog: true
-                }
-        }
-}
 
-        
-        
+        stage('Build') {
+            steps {
+                // Clean and compile the project
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run unit tests
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    // Archive test results
+                    junit '**/target/surefire-reports/*.xml'
+                }
+            }
+        }
+		
+		
+		 stage('Code Analysis') {
+            steps {
+                script {
+                    // Run SonarQube scan
+                    
+                        sh '''mvn clean verify sonar:sonar  -Dsonar.projectKey=test  -Dsonar.projectName='test' -Dsonar.host.url=http://3.107.55.196:9000   -Dsonar.login=${SONAR_TOKEN}'''
+                    
+                }
+            }
+        }
+    }	
+	
+ }
+		
+		

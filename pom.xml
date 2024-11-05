@@ -11,7 +11,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <sonar.projectKey>com.example:test</sonar.projectKey> <!-- Replace with your project key -->
-        <sonar.host.url>http://13.239.137.224:9000</sonar.host.url>
+        <sonar.host.url>http://3.107.55.96:9000</sonar.host.url>
     </properties>
 
     <dependencies>

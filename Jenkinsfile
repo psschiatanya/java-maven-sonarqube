@@ -64,7 +64,7 @@
                 script {
                     // Run SonarQube scan
                     withSonarQubeEnv(SONARQUBE_SERVER) {
-                        sh "${MAVEN_HOME}/bin/mvn sonar:sonar"
+                        sh "${MAVEN_HOME}/bin/mvn sonar:sonar  -Dsonar.login=${SONAR_TOKEN}"
                     }
                 }
             }

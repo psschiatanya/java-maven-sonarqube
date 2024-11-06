@@ -95,6 +95,15 @@
                 }
             }
         } 
+
+       stage ("Step2: Maven Build")
+                {
+                steps {
+                        echo "Step2: Maven Build"
+                        sh 'mvn -B -DskipTests clean install'
+                
+                      }
+                }
 		
 		
 	  

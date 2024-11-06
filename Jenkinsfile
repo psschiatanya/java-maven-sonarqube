@@ -45,21 +45,21 @@
             }
         }
 		
-	/*	stage('Code Analysis') {
+		stage('Code Analysis') {
             steps {
                 script {
                     // Run SonarQube scan
                     
-                        sh '''mvn clean verify sonar:sonar  -Dsonar.projectKey=test  -Dsonar.projectName='test' -Dsonar.host.url=http://3.107.55.196:9000   -Dsonar.login=${SONAR_TOKEN}'''
+                        sh '''mvn clean verify sonar:sonar  -Dsonar.java.binaries=. -Dsonar.projectKey=test  -Dsonar.projectName='test' -Dsonar.host.url=http://3.107.55.196:9000   -Dsonar.login=${SONAR_TOKEN}'''
                     
                 }
             }
         }
 		
-	*/	
+	
 		
 		
-		 stage('Run Sonarqube') {
+/*		 stage('Run Sonarqube') {
             environment {
                 scannerHome = tool 'sonarqube-scanner';
             }
@@ -68,19 +68,10 @@
                 sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=test -Dsonar.projectName='test' -Dsonar.java.binaries=. "
               }
             }
-        } 
+        }   */
 		
 		
-	  /*stage('Code Quality Check via SonarQube') {
-      steps {
-       script {
-       def scannerHome = tool 'sonarqube-scanner';
-           withSonarQubeEnv("sonarqube") {
-           sh '''${tool("sonarqube")}/bin/sonar-scanner  -Dsonar.projectKey=test  -Dsonar.host.url=http://3.107.55.196:9000 -Dsonar.login=sonarqube-token'''
-               }
-           }
-       }
-   } */	
+	  
 		
     }	
 	}

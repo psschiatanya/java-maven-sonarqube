@@ -59,7 +59,7 @@
 	*/	
 		
 		
-	/*	 stage('Run Sonarqube') {
+		 stage('Run Sonarqube') {
             environment {
                 scannerHome = tool 'sonarqube-scanner';
             }
@@ -68,10 +68,10 @@
                 sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=test -Dsonar.projectName='test' -Dsonar.java.binaries='/target/classes/' "
               }
             }
-        } */
+        } 
 		
 		
-	  stage('Code Quality Check via SonarQube') {
+	  /*stage('Code Quality Check via SonarQube') {
       steps {
        script {
        def scannerHome = tool 'sonarqube-scanner';
@@ -80,7 +80,7 @@
                }
            }
        }
-   }	
+   } */	
 		
     }	
 	}

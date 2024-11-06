@@ -60,7 +60,7 @@
 		
 		
 		
-		stage('Code Analysis') {
+		stage('Code Analysis-2') {
             steps {
                 script {
                     // Run SonarQube scan
@@ -87,14 +87,14 @@
         }  */  
 		
 		
-/*		  stage('Quality Gate') {
+		  stage('Quality Gate') {
             steps {
                 // Wait for SonarQube quality gate result
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
                 }
             }
-        } */
+        } 
 		
 		
 	  

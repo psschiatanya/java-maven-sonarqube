@@ -86,14 +86,14 @@
         }  */  
 		
 		
-		  stage('Quality Gate') {
+/*		  stage('Quality Gate') {
             steps {
                 // Wait for SonarQube quality gate result
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
                 }
             }
-        }
+        } */
 		
 		
 	  

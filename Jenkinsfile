@@ -27,14 +27,14 @@
             }
         }
 
-        stage('Build') {
+        stage('Compile') {
             steps {
                 // Clean and compile the project
                 sh 'mvn clean compile'
             }
         }
 
-        stage('Test') {
+        stage('Unit_Test') {
             steps {
                 // Run unit tests
                 sh 'mvn test'
@@ -96,7 +96,7 @@
             }
         } 
 
-       stage ("Step2: Maven Build")
+       stage (" Build_Jar_file")
                 {
                 steps {
                         echo "Step2: Maven Build"

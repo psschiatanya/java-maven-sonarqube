@@ -65,7 +65,7 @@
             }
             steps {
               withSonarQubeEnv(credentialsId: 'sonarqube-token', installationName: 'sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=test -Dsonar.projectName='test' -Dsonar.java.binaries='/target/classes/' "
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=test -Dsonar.projectName='test' -Dsonar.java.binaries=. "
               }
             }
         } 

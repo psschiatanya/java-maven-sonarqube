@@ -14,6 +14,7 @@
 		
         PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
         SONAR_TOKEN = credentials('sonarqube-token') 
+		SONARQUBE_SERVER = 'sonarqube'
 		
 		
     }

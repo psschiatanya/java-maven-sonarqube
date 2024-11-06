@@ -45,7 +45,7 @@
             }
         }
 		
-		stage('Code Analysis') {
+	/*	stage('Code Analysis') {
             steps {
                 script {
                     // Run SonarQube scan
@@ -54,7 +54,7 @@
                     
                 }
             }
-        }
+        } */
 		
 		
 		
@@ -69,8 +69,25 @@
               }
             }
         } */
+		
+		
+	  stage('Code Quality Check via SonarQube') {
+      steps {
+       script {
+       def scannerHome = tool 'sonarqube-scanner';
+           withSonarQubeEnv("sonarqube") {
+           sh "${tool("sonarqube")}/bin/sonar-scanner \
+           -Dsonar.projectKey=test \
+           -Dsonar.sources=. \           
+           -Dsonar.host.url=http://3.107.55.196:9000
+           -Dsonar.login=${SONAR_TOKEN}"
+               }
+           }
+       }
+   }	
+		
     }	
-	
- }
+	}
+ 
 		
 		

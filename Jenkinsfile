@@ -14,7 +14,7 @@
 		
         PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
         SONAR_TOKEN = credentials('sonarqube-token') 
-		SONARQUBE_SERVER = system('sonarqube')
+		
 		
     }
 
@@ -46,7 +46,7 @@
             }
         }
 		
- /*		stage('Code Analysis') {
+		stage('Code Analysis') {
             steps {
                 script {
                     // Run SonarQube scan
@@ -55,11 +55,11 @@
                     
                 }
             }
-        } */
+        } 
 		
 		
 		
-		stage('Code Analysis') {
+/*		stage('Code Analysis') {
             steps {
                 script {
                     // Run SonarQube scan
@@ -68,7 +68,7 @@
                     }
                 }
             }
-        }
+        } */
 		
 		
 	

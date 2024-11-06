@@ -76,9 +76,9 @@
        script {
        def scannerHome = tool 'sonarqube-scanner';
            withSonarQubeEnv("sonarqube") {
-           sh "${tool("sonarqube")}/bin/sonar-scanner \
-           -Dsonar.projectKey='test' \            
-           -Dsonar.host.url='http://3.107.55.196:9000'
+           sh "${tool("sonarqube")}/bin/sonar-scanner 
+           -Dsonar.projectKey=test           
+           -Dsonar.host.url=http://3.107.55.196:9000
            -Dsonar.login=${SONAR_TOKEN}"
                }
            }

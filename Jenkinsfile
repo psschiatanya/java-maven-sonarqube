@@ -45,7 +45,7 @@
             }
         }
 		
-	/*	stage('Code Analysis') {
+		stage('Code Analysis') {
             steps {
                 script {
                     // Run SonarQube scan
@@ -54,7 +54,7 @@
                     
                 }
             }
-        } */
+        }
 		
 		
 		
